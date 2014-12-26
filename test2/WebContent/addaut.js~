@@ -1,0 +1,23 @@
+function addAutForm($scope,$http)
+{
+	$scope.reset=function()
+	{
+		$scope.user.fio="";
+		$scope.user.date="";
+		$scope.user.country="";
+	};
+
+	$scope.save=function()
+	{
+
+		var request = $http({
+                    method: "post",
+                    url: "author/add",
+                    data: {
+                fio: $scope.user.fio,
+		date: $scope.user.date,
+		country: $scope.user.country }
+                }).success(function(){});
+	};
+	
+}

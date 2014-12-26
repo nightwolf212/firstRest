@@ -1,0 +1,11 @@
+database/entity/Fund.class
+myMuseum/webServ.class
+database/entity/Kit.class
+info/ExpoInfo.class
+Main.class
+database/service/DataServiceImpl.class
+database/entity/MovingOfKit.class
+database/entity/Exhibit.class
+database/entity/Author.class
+database/service/DataService.class
+database/entity/MovingOfExhibit.class
