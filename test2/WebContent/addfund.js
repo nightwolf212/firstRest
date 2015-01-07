@@ -6,7 +6,18 @@ function addFundForm($scope,$http)
 	};
 
 	$scope.save=function()
+	{	if ($scope.fund.name.length==0)
 	{
+		alert("Укажите название фонда");
+		return;
+		}
+	for(var i=0; i<$scope.fund.name.length; i++)
+		if($scope.fund.name.charAt(i)==',')
+			{
+			alert("Название не должно содержать запятых");
+			return;
+			}
+
 		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 	
 		var data={

@@ -13,10 +13,72 @@ function addAutForm($scope,$http)
 		var year="";
 		var month="";
 		var day="";
+		if($scope.user.date.length!=10)
+		{
+		alert("Дата должа быть в формате ГГГГ-ММ-ДД");
+		return;
+		
+		}
+	for(var i=0; i<4; i++)
+		{
+			if(!($scope.user.date.charAt(i)<='9'&&$scope.user.date.charAt(i)>='0'))
+				{
+				alert("Дата должа быть в формате ГГГГ-ММ-ДД");
+				return;
+				}
+		}
+	for(var i=5; i<7; i++)
+	{
+		if(!($scope.user.date.charAt(i)<='9'&&$scope.user.date.charAt(i)>='0'))
+			{
+			alert("Дата должа быть в формате ГГГГ-ММ-ДД");
+			return;
+			}
+	}
+	for(var i=8; i<10; i++)
+	{
+		if(!($scope.user.date.charAt(i)<='9'&&$scope.user.date.charAt(i)>='0'))
+			{
+			alert("Дата должа быть в формате ГГГГ-ММ-ДД");
+			return;
+			}
+	}
+	if(!($scope.user.date.charAt(4)=='-'&&$scope.user.date.charAt(7)=='-'))
+		{
+		alert("Дата должа быть в формате ГГГГ-ММ-ДД");
+		return;
+		}
+	
 		year=$scope.user.date.substring(0, 4);
 		month=$scope.user.date.substring(5,7);
 		day=$scope.user.date.substring(8,10);
-		
+		if($scope.user.fio.length==0)
+		{
+			alert("Укажите ФИО");
+			return;
+		}
+		if($scope.user.country.length==0)
+		{
+			alert("Укажите страну");
+			return;
+		}
+		for(var i=0; i<$scope.user.fio.length; i++)
+			{
+				if($scope.user.fio.charAt(i)==',')
+					{
+					alert("ФИО не должно содержать запятых");
+					return;
+					}
+			}
+		for(var i=0; i<$scope.user.country.length; i++)
+		{
+			if($scope.user.country.charAt(i)==',')
+				{
+				alert("Страна не должно содержать запятых");
+				return;
+				}
+		}
+	
 		var data={
 				fio: $scope.user.fio,
 				datey: year,

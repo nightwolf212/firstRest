@@ -19,7 +19,19 @@ function addKitForm($scope,$http)
 	$scope.save=function()
 	{
 		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-		
+		if ($scope.kit.name.length==0)
+		{
+		alert("Укажите название набора");
+		return;
+		}
+	for(var i=0; i<$scope.kit.name.length; i++)
+		if($scope.kit.name.charAt(i)==',')
+			{
+			alert("Название не должно содержать запятых");
+			return;
+			}
+	
+
 		var data={
 				kname: $scope.kit.name,
 				fundId: $scope.kit.fundid

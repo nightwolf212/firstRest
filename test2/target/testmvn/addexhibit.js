@@ -23,6 +23,45 @@ function addExhibitForm($scope,$http)
 	
 	$scope.save=function()
 	{
+		if($scope.exhibit.name.length==0)
+		{
+		alert("Укажите название");
+		return;
+		}
+	if($scope.exhibit.date.length!=4)
+	{
+	alert("Укажите дату в формате ГГГГ");
+	return;
+	}
+	if($scope.exhibit.resp.length==0)
+	{
+	alert("Укажите ответственное лицо");
+	return;
+	}
+for(var i=0; i<$scope.exhibit.name.length; i++)
+	{
+		if($scope.exhibit.name.charAt(i)==',')
+			{
+				alert("Название не должно содержать запятых");
+				return;
+			}
+	}
+for(var i=0; i<$scope.exhibit.date.length; i++)
+{
+	if(!($scope.exhibit.date.charAt(i)<='9' &&$scope.exhibit.date.charAt(i)>='0'))
+		{
+			alert("Укажите дату в формате ГГГГ");
+			return;
+		}
+}
+for(var i=0; i<$scope.exhibit.resp.length; i++)
+{
+	if($scope.exhibit.resp.charAt(i)==',')
+		{
+			alert("Имя ответственного лица не должно содержать запятых");
+			return;
+		}
+}
 		$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 		
 		var data={

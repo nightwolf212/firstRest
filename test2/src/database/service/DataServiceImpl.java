@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 
+import javax.ejb.Stateless;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,6 +27,7 @@ import database.entity.MovingOfKit;
 /////////////////////////////////////////////////////////////////////////////////
 // Basic Implementation of DataService
 ////////////////////////////////////////////////////////////////////////////////
+@Stateless
 public class DataServiceImpl implements DataService {
 
 	
@@ -46,6 +49,7 @@ public class DataServiceImpl implements DataService {
 	Transaction tx = session.beginTransaction();
 	x=(Author)session.createQuery("from Author where authorId='"+authorId+"'").uniqueResult();
 	tx.commit();
+	sessions.close();
 	return x;
 	}
 	
@@ -59,6 +63,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		x=(Exhibit)session.createQuery("from Exhibit where exhibitId='"+exhibitId+"'").uniqueResult();
 		tx.commit();
+		sessions.close();
 		return x;
 		
 	}
@@ -72,6 +77,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		x=(Kit)session.createQuery("from Kit where kitId='"+kitId+"'").uniqueResult();
 		tx.commit();
+		sessions.close();
 		return x;
 
 		
@@ -86,6 +92,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		x=(MovingOfExhibit)session.createQuery("from MovingOfExhibit where movingOfExId='"+movingOfExId+"'").uniqueResult();
 		tx.commit();
+		sessions.close();
 		return x;
 
 	}
@@ -99,6 +106,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		x=(MovingOfKit)session.createQuery("from MovingOfKit where movingOfKitId='"+movingOfKitId+"'").uniqueResult();
 		tx.commit();
+		sessions.close();
 		return x;
 		
 	}
@@ -111,7 +119,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		session.save(aut);
 		tx.commit();
-		
+		sessions.close();
 		
 
 	}
@@ -124,7 +132,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		session.save(ex);
 		tx.commit();
-		
+		sessions.close();
 	}
 
 	@Override
@@ -135,7 +143,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		session.save(kt);
 		tx.commit();
-		
+		sessions.close();
 	}
 
 	@Override
@@ -146,7 +154,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		session.save(me);
 		tx.commit();
-		
+		sessions.close();
 	}
 
 	@Override
@@ -157,7 +165,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		session.save(mk);
 		tx.commit();
-		
+		sessions.close();
 	}
 
 	@Override
@@ -169,6 +177,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.delete(aut);
 		tx.commit();
+		sessions.close();
 	}
 
 	@Override
@@ -180,6 +189,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.delete(ex);
 		tx.commit();
+		sessions.close();
 	}
 
 	@Override
@@ -191,6 +201,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.delete(kt);
 		tx.commit();
+		sessions.close();
 	}
 
 	@Override
@@ -202,6 +213,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.delete(me);
 		tx.commit();
+		sessions.close();
 	}
 
 	@Override
@@ -213,7 +225,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.delete(mk);
 		tx.commit();
-
+		sessions.close();
 	}
 
 	@Override
@@ -224,6 +236,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		ArrayList<Exhibit> exs=(ArrayList<Exhibit>) session.createQuery("from Exhibit where kitId='"+kitId+"'").list();
 		tx.commit();
+		sessions.close();
 		return exs;
 	}
 
@@ -235,6 +248,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		ArrayList<Kit> kts=(ArrayList<Kit>) session.createQuery("from Kit where fundId='"+fundId+"'").list();
 		tx.commit();
+		sessions.close();
 		return kts;
 	}
 
@@ -246,6 +260,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		MovingOfKit mk=(MovingOfKit)session.createQuery("from MovingOfKit where kitId='"+kitId+"' and (beginDate<='"+d.toString()+"' and endDate>='"+d.toString()+"')").uniqueResult();
 		ExpoInfo ei=new ExpoInfo(mk.getExpoName(),mk.getExpoAdress(),mk.getExpoPhone(),mk.getPersonName(),mk.getBeginDate(),mk.getEndDate());
+		sessions.close();
 		return ei;
 	}
 
@@ -257,6 +272,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		MovingOfExhibit me=(MovingOfExhibit)session.createQuery("from MovingOfExhibit where exId='"+exId+"' and (beginDate<='"+d.toString()+"' and endDate>='"+d.toString()+"')").uniqueResult();
 		ExpoInfo ei=new ExpoInfo(me.getExpoName(),me.getExpoAdress(),me.getExpoPhone(),me.getPersonName(),me.getBeginDate(),me.getEndDate());
+		sessions.close();
 		return ei;
 		
 	}
@@ -270,7 +286,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.update(kt);
 		tx.commit();
-		
+		sessions.close();
 	}
 
 
@@ -282,6 +298,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.update(ex);
 		tx.commit();
+		sessions.close();
 	}
 
 
@@ -293,7 +310,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		session.save(fd);
 		tx.commit();
-
+		sessions.close();
 	}
 
 
@@ -306,6 +323,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.delete(fd);
 		tx.commit();	
+		sessions.close();
 	}
 
 
@@ -317,6 +335,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		session.update(fd);
 		tx.commit();
+		sessions.close();
 	}
 	
 	@Override 
@@ -328,6 +347,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx = session.beginTransaction();
 		x=(Fund)session.createQuery("from Fund where fundId='"+fId+"'").uniqueResult();
 		tx.commit();
+		sessions.close();
 		return x;
 
 	}
@@ -341,6 +361,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		ArrayList<Exhibit> exs=(ArrayList<Exhibit>)session.createQuery("from Exhibit").list();
 		tx.commit();
+		sessions.close();
 		return exs;
 	}
 
@@ -353,6 +374,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		ArrayList<Kit> kts=(ArrayList<Kit>)session.createQuery("from Kit").list();
 		tx.commit();
+		sessions.close();
 		return kts;
 		
 	}
@@ -366,6 +388,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		ArrayList<Fund> fds=(ArrayList<Fund>)session.createQuery("from Fund").list();
 		tx.commit();
+		sessions.close();
 		return fds;
 		
 	}
@@ -379,6 +402,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		ArrayList<Author> ats=(ArrayList<Author>)session.createQuery("from Author").list();
 		tx.commit();
+		sessions.close();
 		return ats;
 	}
 
@@ -391,6 +415,7 @@ public class DataServiceImpl implements DataService {
 		Transaction tx=session.beginTransaction();
 		ArrayList<Exhibit> exs=(ArrayList<Exhibit>) session.createQuery("from Exhibit where authorId='"+autId+"'").list();
 		tx.commit();
+		sessions.close();
 		return exs;
 	
 	}
