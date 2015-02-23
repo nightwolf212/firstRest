@@ -42,7 +42,7 @@ public class DataServiceImpl implements DataService {
 	@PersistenceUnit(unitName="BaseJPA")	
 	public EntityManagerFactory emf;
 	//@PersistenceContext(unitName="BaseJPA")	
-	//public EntityManager em;
+	//public EntityManager em=emf.createEntityManager();
 	//////////////////////////////////////////////////////////////////////////////////
 	// Public methods
 	//////////////////////////////////////////////////////////////////////////////////

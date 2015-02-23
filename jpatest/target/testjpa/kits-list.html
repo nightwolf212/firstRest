@@ -1,0 +1,8 @@
+ 
+  Поиск: <input ng-model="query">
+<table> 
+<tr><td><a href ng-click="ordByName()">Название набора</a></td><td><a href ng-click="ordByFund()">Название фонда</a></td></tr>
+<tr ng-repeat="kit in kitList |filter:query | orderBy:orderProp">
+<td><a href="exhibits.html#/exhibits/{{kit.id}}">{{kit.kname}}</a>	</td><td><a href="#/kitsinfund/{{kit.fundid}}">{{kit.fundName}}</a></td><td><a href ng-click="deleteKit(kit.id)">Удалить</a></td>
+</tr>
+</table> 
