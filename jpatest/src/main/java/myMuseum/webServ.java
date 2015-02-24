@@ -63,7 +63,6 @@ public class webServ {
     	x.setAuthorName(fio);
     	x.setBirth(datey.concat("-").concat(datem).concat("-").concat(dated));
     	x.setCountry(country);
-    	//DataService ds=new DataServiceImpl();
     	ds.addAuthor(x);	
     	return fio;
     }
@@ -79,7 +78,6 @@ public class webServ {
     e.setRespName(respName);
     e.setKitId(Integer.parseInt(kitId));
     e.setFree(true);
-    //DataService ds=new DataServiceImpl();
     ds.addExhibit(e);
     return ename;	
     }
@@ -92,7 +90,6 @@ public class webServ {
     	kt.setFree(true);
     	kt.setFundId(Integer.parseInt(fundId));
     	kt.setKitName(kname);
-    	//DataService ds=new DataServiceImpl();
     	ds.addKit(kt);
     	return kname;	
     }
@@ -123,7 +120,6 @@ public class webServ {
     	me.setExpoPhone(expoPhone);
     	me.setPersonName(persName);
     	me.setExhibitId(Integer.parseInt(exId));
-    	//DataService ds=new DataServiceImpl();
     	Exhibit ex=ds.getExhibit(Integer.parseInt(exId));
     	ex.setFree(false);
     	ds.updateExhibit(ex);
@@ -147,8 +143,6 @@ public class webServ {
     	mk.setExpoPhone(expoPhone);
     	mk.setPersonName(persName);
     	mk.setKitId(Integer.parseInt(ktId));
-    	//DataService ds=new DataServiceImpl();
-    
     	Kit kt=ds.getKit(Integer.parseInt(ktId));
     	kt.setFree(false);
     	ds.updateKit(kt);
@@ -158,7 +152,6 @@ public class webServ {
     @Path("/author/{id}")
     @GET
     public String getAuthor(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	Author x=ds.getAuthor(Integer.parseInt(id));
     	if(x==null)
     		return "-1";
@@ -168,7 +161,6 @@ public class webServ {
     @Path("/exhibit/{id}")
     @GET
     public String getExhibit(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	Exhibit x=ds.getExhibit(Integer.parseInt(id));
     	if(x==null)
     		return "-1";
@@ -182,7 +174,6 @@ public class webServ {
     @Path("/fund/{id}")
     @GET
     public String getFund(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	Fund x=ds.getFund(Integer.parseInt(id));
     	if(x==null)
     		return "-1";
@@ -193,7 +184,6 @@ public class webServ {
     @Path("/kit/{id}")
     @GET
     public String message(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	Kit x=ds.getKit(Integer.parseInt(id));
     	if(x==null)
     		return "-1";
@@ -206,7 +196,6 @@ public class webServ {
     @Path("/moving/exhibit/{id}")
     @GET
     public String getMovingOfExhibit(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	MovingOfExhibit x=ds.getMovingOfExhibit(Integer.parseInt(id));
     	if(x==null)
     		return "-1";
@@ -216,7 +205,6 @@ public class webServ {
     @Path("/moving/kit/{id}")
     @GET
     public String getMovingOfKit(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	MovingOfKit x=ds.getMovingOfKit(Integer.parseInt(id));
     	if(x==null)
     		return "-1";
@@ -230,7 +218,6 @@ public class webServ {
     @Consumes("application/x-www-form-urlencoded")
     public void removeAuthor (@FormParam("id") String id)
     {
-    	//DataService ds=new DataServiceImpl();
     	ds.removeAutor(Integer.parseInt(id));
     
     }
@@ -240,7 +227,6 @@ public class webServ {
     @Consumes("application/x-www-form-urlencoded")
     public void removeExhibit (@FormParam("id") String id)
     {
-    	//DataService ds=new DataServiceImpl();
     	ds.removeExhibit(Integer.parseInt(id));
     }
    
@@ -249,7 +235,6 @@ public class webServ {
     @Consumes("application/x-www-form-urlencoded")
     public void removeFund (@FormParam("id") String id)
     {
-    	//DataService ds=new DataServiceImpl();
     	ds.removeFund(Integer.parseInt(id));
     }
     @Path("/kit/remove")
@@ -257,7 +242,6 @@ public class webServ {
     @Consumes("application/x-www-form-urlencoded")
     public void removeKit (@FormParam("id") String id)
     {
-    	//DataService ds=new DataServiceImpl();
     	ds.removeKit(Integer.parseInt(id));
     
     }
@@ -266,7 +250,6 @@ public class webServ {
     @Consumes("application/x-www-form-urlencoded")
     public void removeMovingOfExhibit (@FormParam("id") String id)
     {
-    	//DataService ds=new DataServiceImpl();
     	ds.removeMovingOfExhibit(Integer.parseInt(id));
         }
     @Path("/moving/kit/remove")
@@ -284,7 +267,6 @@ public class webServ {
     @Consumes("application/x-www-form-urlencoded")
     public String updateExhibit (@FormParam("eId") String eId,@FormParam("ename") String ename,@FormParam("datey") String datey, @FormParam("autId") String autId,@FormParam("respName") String respName)
     {
-    	//DataService ds=new DataServiceImpl();
     	Exhibit e=ds.getExhibit(Integer.parseInt(eId));
     	e.setAuthorId(Integer.parseInt(autId));
     	e.setCreateDate(datey);
@@ -299,7 +281,6 @@ public class webServ {
     @Consumes("application/x-www-form-urlencoded")
     public String updateKit (@FormParam("kId") String kId,@FormParam("kname") String kname,@FormParam("fundId") String fundId)
     {
-    	//DataService ds=new DataServiceImpl();
     	Kit kt=ds.getKit(Integer.parseInt(kId));;
     	kt.setFundId(Integer.parseInt(fundId));
     	kt.setKitName(kname);
@@ -311,46 +292,14 @@ public class webServ {
     @Consumes("application/x-www-form-urlencoded")
     public String updateFund (@FormParam("fId") String fId, @FormParam("fname") String fname)
     {
-    	//DataService ds=new DataServiceImpl();
     	Fund f=ds.getFund(Integer.parseInt(fId));
     	f.setFundName(fname);
     	ds.updateFund(f);
     	return fname;	
     }
-    /*
-    @Path("/kit/location")
-    @GET
-    @Consumes("application/x-www-form-urlencoded")
-    public String getKitLocation(@FormParam("kId") String kId,@FormParam("datey") String datey,@FormParam("datem") String datem,@FormParam("dated") String dated) {
-    	//DataService ds=new DataServiceImpl();
-    	Date d=new Date(0);
-    	d=Date.valueOf(datey.concat("-").concat(datem).concat("-").concat(dated));
-    	ExpoInfo ei=ds.getLocationOfKit(Integer.parseInt(kId), d);
-    	if(ei==null)
-    		return "-1";
-    	else
-    		return ei.toString();
-    
-    }
-    @Path("/exhibit/location")
-    @GET
-    @Consumes("application/x-www-form-urlencoded")
-    public String getExibitLocation(@FormParam("eId") String eId,@FormParam("datey") String datey,@FormParam("datem") String datem,@FormParam("dated") String dated) {
-    	//DataService ds=new DataServiceImpl();
-    	Date d=new Date(0);
-    	d=Date.valueOf(datey.concat("-").concat(datem).concat("-").concat(dated));
-    	ExpoInfo ei=ds.getLocationOfKit(Integer.parseInt(eId), d);
-    	if(ei==null)
-    		return "-1";
-    	else
-    		return ei.toString();
-    
-    }
-    */
     @Path("/exhibit")
     @GET
     public String getExhibits() {
-    	//DataService ds=new DataServiceImpl();
     	String rs=new String("");
     	ArrayList<Exhibit> al=ds.getExhibits();
     	for(Exhibit e:al)
@@ -365,7 +314,6 @@ public class webServ {
     @Path("/author")
     @GET
     public String getAuthors() {
-    	//DataService ds=new DataServiceImpl();
     	String rs=new String("");
     	ArrayList<Author> al=ds.getAuthors();
     	for(Author e:al)
@@ -378,7 +326,6 @@ public class webServ {
     @Path("/kit")
     @GET
     public String getKits() {
-    	//DataService ds=new DataServiceImpl();
     	String rs=new String("");
     	ArrayList<Kit> al=ds.getKits();
     	for(Kit e:al)
@@ -392,7 +339,6 @@ public class webServ {
     @Path("/fund")
     @GET
     public String getFunds() {
-    	//DataService ds=new DataServiceImpl();
     	String rs=new String("");
     	ArrayList<Fund> al=ds.getFunds();
     	for(Fund e:al)
@@ -405,7 +351,6 @@ public class webServ {
     @Path("/fund/{id}/kits")
     @GET
     public String getKitsFromFunds(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	String rs=new String("");
     	ArrayList<Kit> al=ds.getKitsFromFund(Integer.parseInt(id));
     	for(Kit e:al)
@@ -419,7 +364,6 @@ public class webServ {
     @Path("/kit/{id}/exhibits")
     @GET
     public String getExhibitsFromKits(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	String rs=new String("");
     	ArrayList<Exhibit> al=ds.getExhibitsFromKit(Integer.parseInt(id));
     	for(Exhibit e:al)
@@ -434,7 +378,6 @@ public class webServ {
     @Path("/author/{id}/exhibits")
     @GET
     public String getExhibitsByAuthor(@PathParam("id") String id) {
-    	//DataService ds=new DataServiceImpl();
     	String rs=new String("");
     	ArrayList<Exhibit> al=ds.getExhibitsByAut(Integer.parseInt(id));
     	for(Exhibit e:al)
