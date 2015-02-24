@@ -1,8 +1,0 @@
- Набор {{exhibitList[0].kitName}}</br>
-  Поиск: <input ng-model="query">
-<table> 
-<tr><td><a href ng-click="ordByName()">Название экспоната</a></td><td><a href ng-click="ordByDate()">Дата создания</a></td><td><a href ng-click="ordByAuth()">Автор</a></td><td><a href ng-click="ordByResp()">Ответственный</a></td></tr>
-<tr ng-repeat="exhib in exhibitList |filter:query | orderBy:orderProp">
-<td>{{exhib.name}}</td><td>{{exhib.date}}</td><td><a href="exhibits.html#/exhibits/aut/{{exhib.authorId}}">{{exhib.authorName}}</a></td><td>{{exhib.respName}}</td><td><a href ng-click="deleteExhib(exhib.id)">Удалить</a></td>
-</tr>
-</table> 

@@ -1,9 +1,0 @@
-
-фонд {{kitList[0].fundName}}</br>
-Поиск: <input ng-model="query">
-<table> 
-<tr><td>Название набора</a></td></tr>
-<tr ng-repeat="kit in kitList |filter:query | orderBy:orderProp">
-<td><a href="exhibits.html#/exhibits/{{kit.id}}">{{kit.kname}}</a></td><td><a href ng-click="deleteKit(kit.id)">Удалить</a></td>
-</tr>
-</table> 
