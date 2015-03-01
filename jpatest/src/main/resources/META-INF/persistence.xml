@@ -4,8 +4,8 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
     <persistence-unit name="BaseJPA">
-    <jta-data-source>museumDB</jta-data-source>
-    <non-jta-data-source>museumDB</non-jta-data-source>
+    <jta-data-source>jdbc/museumDB</jta-data-source>
+    <non-jta-data-source>jdbc/museumDB</non-jta-data-source>
          <class>database.entity.Author</class>
         <class>database.entity.Exhibit</class>
         <class>database.entity.Fund</class>
@@ -13,8 +13,8 @@
         <class>database.entity.MovingOfExhibit</class>
         <class>database.entity.MovingOfKit</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
-     <properties>
-         	
+   <properties>
+         <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
     </properties>
     </persistence-unit>
 </persistence>
